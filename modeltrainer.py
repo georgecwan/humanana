@@ -10,12 +10,12 @@ from keras.models import Sequential
 
 import pathlib
 
-data_dir = pathlib.Path('training2')
+data_dir = pathlib.Path('training')
 
 image_count = len(list(data_dir.glob('*/*.jpg')))
 print(image_count)
 
-batch_size = 32
+batch_size = 64
 epochs = 5
 img_height = 256
 img_width = 256
@@ -67,7 +67,7 @@ data_augmentation = keras.Sequential(
 
 model = Sequential([
   data_augmentation,
-  layers.Rescaling(1/100, input_shape=(img_height, img_width, 1)),
+  layers.Rescaling(1/50, input_shape=(img_height, img_width, 1)),
   layers.Conv2D(16, 1, padding='same', activation='relu'),
   layers.MaxPooling2D(),
   layers.Conv2D(32, 1, padding='same', activation='relu'),
@@ -115,7 +115,7 @@ epochs_range = range(epochs)
 # plt.show()
 
 img = tf.keras.utils.load_img(
-    'banana_stock.jpg', target_size=(img_height, img_width), color_mode='grayscale'
+    'assets/banana_stock.jpg', target_size=(img_height, img_width), color_mode='grayscale'
 )
 img_array = tf.keras.utils.img_to_array(img)
 img_array = tf.expand_dims(img_array, 0) # Create a batch

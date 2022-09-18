@@ -2,7 +2,7 @@ import coremltools as ct
 import tensorflow as tf
 from PIL import Image, ImageOps
 
-FILE_NAME = 'banana2.jpg'
+FILE_NAME = 'assets/banana2.jpg'
 class_labels = ['banana', 'human']
 
 img = tf.keras.utils.load_img(

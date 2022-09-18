@@ -12,7 +12,7 @@ print(interpreter.get_signature_list())
 classify_lite = interpreter.get_signature_runner('serving_default')
 
 img = tf.keras.utils.load_img(
-    'peely.webp', target_size=(img_height, img_width), color_mode='grayscale'
+    'assets/portrait.jpg', target_size=(img_height, img_width), color_mode='grayscale'
 )
 img_array = tf.keras.utils.img_to_array(img)
 img_array = tf.expand_dims(img_array, 0)
