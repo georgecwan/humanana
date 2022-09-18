@@ -15,7 +15,7 @@
 		E623972A28D6B4D2009F4F51 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E623972928D6B4D2009F4F51 /* CaptureView.swift */; };
 		E623973028D6C5D7009F4F51 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E623972F28D6C5D7009F4F51 /* ResultView.swift */; };
 		E6F3177D28D71076000F6EDC /* Comfortaa.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6F3177C28D71076000F6EDC /* Comfortaa.ttf */; };
-		E6F3178528D7206D000F6EDC /* bananaModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E6F3178428D7206D000F6EDC /* bananaModel.mlmodel */; };
+		E6F3178728D72297000F6EDC /* bananaModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E6F3178628D72297000F6EDC /* bananaModel.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		E623972F28D6C5D7009F4F51 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		E6F3177A28D70F89000F6EDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E6F3177C28D71076000F6EDC /* Comfortaa.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Comfortaa.ttf; sourceTree = "<group>"; };
-		E6F3178428D7206D000F6EDC /* bananaModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = bananaModel.mlmodel; sourceTree = "<group>"; };
+		E6F3178628D72297000F6EDC /* bananaModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = bananaModel.mlmodel; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,7 @@
 		E623971628D67FE6009F4F51 /* humanana */ = {
 			isa = PBXGroup;
 			children = (
-				E6F3178428D7206D000F6EDC /* bananaModel.mlmodel */,
+				E6F3178628D72297000F6EDC /* bananaModel.mlmodel */,
 				E6F3177A28D70F89000F6EDC /* Info.plist */,
 				E6F3177C28D71076000F6EDC /* Comfortaa.ttf */,
 				E623971728D67FE6009F4F51 /* humananaApp.swift */,
@@ -155,10 +155,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6F3178728D72297000F6EDC /* bananaModel.mlmodel in Sources */,
 				E623972628D6829E009F4F51 /* CameraView.swift in Sources */,
 				E623971828D67FE6009F4F51 /* humananaApp.swift in Sources */,
 				E623973028D6C5D7009F4F51 /* ResultView.swift in Sources */,
-				E6F3178528D7206D000F6EDC /* bananaModel.mlmodel in Sources */,
 				E623972828D6B3D8009F4F51 /* StartView.swift in Sources */,
 				E623972A28D6B4D2009F4F51 /* CaptureView.swift in Sources */,
 			);
