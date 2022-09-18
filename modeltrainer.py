@@ -9,20 +9,20 @@ from keras import layers
 from keras.models import Sequential
 
 import pathlib
-#data_dir = tf.keras.utils.get_file()
 
 data_dir = pathlib.Path('training2')
 
 image_count = len(list(data_dir.glob('*/*.jpg')))
 print(image_count)
 
-batch_size = 64
+batch_size = 32
+epochs = 5
 img_height = 256
 img_width = 256
 
 train_ds = tf.keras.utils.image_dataset_from_directory(
   data_dir,
-  validation_split=0.4,
+  validation_split=0.3,
   subset="training",
   color_mode='grayscale',
   seed=100,
@@ -31,7 +31,7 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
 
 val_ds = tf.keras.utils.image_dataset_from_directory(
   data_dir,
-  validation_split=0.4,
+  validation_split=0.3,
   subset="validation",
   color_mode='grayscale',
   seed=100,
@@ -54,14 +54,27 @@ val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
 num_classes = len(class_names)
 
+data_augmentation = keras.Sequential(
+  [
+    layers.RandomFlip("horizontal",
+                      input_shape=(img_height,
+                                  img_width,
+                                  1)),
+    layers.RandomRotation(0.1),
+    layers.RandomZoom(0.1),
+  ]
+)
+
 model = Sequential([
-  layers.Rescaling(1./255, input_shape=(img_height, img_width, 1)),
+  data_augmentation,
+  layers.Rescaling(1/100, input_shape=(img_height, img_width, 1)),
   layers.Conv2D(16, 1, padding='same', activation='relu'),
   layers.MaxPooling2D(),
   layers.Conv2D(32, 1, padding='same', activation='relu'),
   layers.MaxPooling2D(),
   layers.Conv2D(64, 1, padding='same', activation='relu'),
   layers.MaxPooling2D(),
+  layers.Dropout(0.2),
   layers.Flatten(),
   layers.Dense(128, activation='relu'),
   layers.Dense(num_classes)
@@ -72,8 +85,6 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 model.summary()
-
-epochs = 10
 
 history = model.fit(
   train_ds,
@@ -118,7 +129,7 @@ print(
 )
 
 model.save('model')
-mlmodel = ct.convert(model, source="tensorflow")
+# mlmodel = ct.convert(model, source="tensorflow")
 
 # Convert the model.
 converter = tf.lite.TFLiteConverter.from_keras_model(model)

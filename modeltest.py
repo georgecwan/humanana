@@ -12,12 +12,12 @@ print(interpreter.get_signature_list())
 classify_lite = interpreter.get_signature_runner('serving_default')
 
 img = tf.keras.utils.load_img(
-    'apple.jpg', target_size=(img_height, img_width), color_mode='grayscale'
+    'peely.webp', target_size=(img_height, img_width), color_mode='grayscale'
 )
 img_array = tf.keras.utils.img_to_array(img)
 img_array = tf.expand_dims(img_array, 0)
 
-predictions_lite = classify_lite(rescaling_1_input=img_array)['dense_1']
+predictions_lite = classify_lite(sequential_input=img_array)['dense_1']
 score_lite = tf.nn.softmax(predictions_lite)
 class_names = ['banana', 'human']
 print(

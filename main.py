@@ -23,5 +23,5 @@ mlmodel.save('bananaModel.mlmodel')
 
 exImage = Image.open(FILE_NAME).resize((256, 256))
 exImage = ImageOps.grayscale(exImage)
-out_dict = mlmodel.predict({'rescaling_1_input': exImage})
+out_dict = mlmodel.predict({'sequential_input': exImage})
 print(out_dict)
