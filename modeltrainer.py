@@ -10,19 +10,19 @@ from keras.models import Sequential
 
 import pathlib
 #data_dir = tf.keras.utils.get_file()
-# data_dir = pathlib.Path('C:\\Users\\bbria\\Downloads\\keras training set')
-data_dir = pathlib.Path('C:\\Users\\bbria\\Downloads\\training2')
+
+data_dir = pathlib.Path('training2')
 
 image_count = len(list(data_dir.glob('*/*.jpg')))
 print(image_count)
 
-batch_size = 8
+batch_size = 64
 img_height = 256
 img_width = 256
 
 train_ds = tf.keras.utils.image_dataset_from_directory(
   data_dir,
-  validation_split=0.3,
+  validation_split=0.4,
   subset="training",
   color_mode='grayscale',
   seed=100,
@@ -31,7 +31,7 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
 
 val_ds = tf.keras.utils.image_dataset_from_directory(
   data_dir,
-  validation_split=0.3,
+  validation_split=0.4,
   subset="validation",
   color_mode='grayscale',
   seed=100,
@@ -73,7 +73,7 @@ model.compile(optimizer='adam',
 
 model.summary()
 
-epochs = 3
+epochs = 10
 
 history = model.fit(
   train_ds,
@@ -104,7 +104,7 @@ epochs_range = range(epochs)
 # plt.show()
 
 img = tf.keras.utils.load_img(
-    'Banana-Single.jpg', target_size=(img_height, img_width), color_mode='grayscale'
+    'banana_stock.jpg', target_size=(img_height, img_width), color_mode='grayscale'
 )
 img_array = tf.keras.utils.img_to_array(img)
 img_array = tf.expand_dims(img_array, 0) # Create a batch
@@ -117,8 +117,8 @@ print(
     .format(class_names[np.argmax(score)], 100 * np.max(score))
 )
 
-model.save('model.mlmodel')
-mlmodel = ct.convert('model.mlmodel', source="tensorflow")
+model.save('model')
+mlmodel = ct.convert(model, source="tensorflow")
 
 # Convert the model.
 converter = tf.lite.TFLiteConverter.from_keras_model(model)
