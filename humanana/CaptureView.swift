@@ -78,7 +78,7 @@ struct CaptureView: View {
                             label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 20)
-                                        .fill(.green)
+                                        .fill(Color(red: 51 / 255, green: 138 / 255, blue: 1 / 255))
                                         .frame(width: 200, height: 50)
                                     Text("confirm")
                                         .foregroundColor(.yellow)

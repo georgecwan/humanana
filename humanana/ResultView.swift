@@ -73,12 +73,12 @@ struct ResultView: View {
         do { let p = try
             model.prediction(sequential_input: image.pixelBufferGray(width: 256, height: 256)!)
             data = p.Identity
-            isBanana = data["human"]! < data["banana"]!
-            accuracy = (isBanana ? data["banana"] : data["human"])!
-            if accuracy < 0 {
-                accuracy = 0
-            } else if accuracy > 1 {
-                accuracy = 1
+            accuracy = data["banana"]! - data["human"]!
+            if accuracy > 0 {
+                isBanana = true
+            } else {
+                isBanana = false
+                accuracy *= -1
             }
         } catch {
             
@@ -110,6 +110,12 @@ struct ResultView: View {
                     Text("we are \(accuracy * 100)% sure this is a \(result).")
                         .frame(width: 200)
                         .multilineTextAlignment(.center)
+                    if data["banana"] != nil {
+                        Text("banana: \(data["banana"]!)")
+                    }
+                    if data["human"] != nil {
+                        Text("human: \(data["human"]!)")
+                    }
                 }
                 .font(.custom("Comfortaa", size: 24))
             }
